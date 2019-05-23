@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx,amssymb,amsmath,setspace,comment,verbatim,titling,pgf,lscape}
+\usepackage[left=1.27cm,right=1.27cm,top=3cm,bottom=1.27cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[hang,small]{caption}
+\usepackage{array}
+\usepackage{amsmath}
+
+
+%\usepackage{siunitx}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\hypersetup{colorlinks,%
+						citecolor=black,%
+						filecolor=black,%
+						linkcolor=black,%
+						urlcolor=blue,%
+						}
+\pagestyle{fancy}
+\setstretch{1.5}
+
+
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\setlength{\droptitle}{-50pt}
+
+
+\title{Do Hospitals Cost-Shift? New Evidence from the Hospital Readmission Reduction Program}
+\author{Michael Darden, Ian McCarthy, and Eric Barrette}
+\date{May 2017 \vspace{-2ex}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A longstanding debate in health economics and health policy concerns the extent to which hospitals increase prices to private insurance patients following reductions in public funding (Dranove, 1988).  A necessary condition for this dynamic ``cost-shifting'' to occur is that a hospital have relative market power - in the market for health services and relative to its bargaining relationship with private insurance firms.  Differentiating between a cost-shifting strategy and basic price discrimination has important implications for healthcare policy and overall awareness of the underlying sources of hospital price changes. Indeed, if dynamic cost-shifting is a sufficiently strong mechanism behind observed changes in prices, then decreases in public payer reimbursement rates would tend to increase private insurance premiums as hospitals bargain for higher private payer prices.  Despite a general lack of evidence (Frakt, 2011), the assumption of dynamic cost-shifting as common hospital practice is ubiquitous in the healthcare policy debate.  Indeed, President Obama, during debate over the Affordable Care Act, said, ``You and I are both paying 900 bucks on average - our families - in higher premiums because of uncompensated care.''
+
+In this paper, we exploit the recent adoption of the hospital readmission reduction program (HRRP) to examine the effect of lower public reimbursement rates on hospital prices and hospital payer mix.  The HRRP was part of the Affordable Care Act's focus on improving quality, tying Medicare reimbursements to risk-adjusted measures of 30-day readmission rates for myocardial infarction (AMI), heart failure (HF), and pneumonia (PN).  Starting 2012, readmission rates were aggregated into an index which determined the extent of reimbursement reductions for Medicare patients, calculated as a percentage of total Medicare reimbursements to the hospital. In other words, although any readmission penalties were assessed based on specific conditions, the financial implications apply to the entire hospital. In 2015, CMS added readmission rates for hip and knee replacement and COPD as part of the aggregate index.  Importantly, the HRRP period is also rich in temporal reimbursement variation, which we use to study how prices charged to private insurance firms changed.
+
+Using data from CMS' Hospital Compare, we construct a panel of hospital readmissions measures for all relevant conditions from 2009 through 2016.  To these data, we merge cost and utilization data for Americans covered by private insurance from the Health Care Cost Institute (HCCI).  HCCI data are ideal for evaluating variation in hospital-level pricing and payment, and they include negotiated prices between hospitals and insurers for the population of claims submitted to HCCI by Aetna, Humana, Kaiser Permanente, and UnitedHealthcare.  Finally, we incorporate additional hospital characteristics from the American Hospital Association (AHA) and the Healthcare Cost Report Information System (HCRIS).
+
+Our baseline empirical specification conditions on hospital-specific fixed effects and other time-varying hospital characteristics, and we examine trends in prices before and after HRRP between hospitals which faced a reimbursement reduction ( 67$\%$ in 2013) to those than do not.  Recognizing the potential selection bias in reimbursement reduction, we also examine differential trends in prices on the basis of profit status and reimbursement reduction size.  Because the ability to cost-shift depends on the relative market share of a hospital, we use Medicare Advantage data to construct a measure of a hospital's market share in the local market for hospital services relative to the concentration of private insurers.  Our preferred specification compares difference-in-differences estimates on the basis of relative market share (i.e., a triple difference).
+
+Our preliminary findings suggest that hospitals faced with HRRP penalties reduce the proportion of public (Medicare and Medicaid) patients; however, we find little evidence of an increase in hospital prices, both overall and among not-for-profit hospitals specifically. Our results are consistent with standard price discrimination in the sense that private patient rates do vary considerably from Medicare patients.  We find no evidence that variation in public reimbursement rates causes hospitals to negotiate higher private rates, even in cases in which a non-profit hospital has significant market power and even several years after public rate reductions.  Our results suggest that dynamic cost-shifting is an unlikely explanation for rising private prices and private insurance premiums.
+\end{abstract}
+
+\begin{footnotesize}
+\noindent \textit{JEL Classification:} \\[-1ex]
+\noindent \textit{Keywords:}
+\end{footnotesize}
+
+\end{document} 

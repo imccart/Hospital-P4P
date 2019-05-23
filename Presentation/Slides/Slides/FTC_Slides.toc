@@ -1,0 +1,16 @@
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{4}{0}{1}
+\beamer@subsectionintoc {1}{1}{Evidence in Favor of Cost-Shifting}{4}{0}{1}
+\beamer@subsectionintoc {1}{2}{Evidence Against Cost-Shifting}{17}{0}{1}
+\beamer@subsectionintoc {1}{3}{Our Contribution}{24}{0}{1}
+\beamer@sectionintoc {2}{Empirical Work}{35}{0}{2}
+\beamer@subsectionintoc {2}{1}{Policy Environment}{35}{0}{2}
+\beamer@subsectionintoc {2}{2}{The Data}{47}{0}{2}
+\beamer@subsectionintoc {2}{3}{Empirical Model}{54}{0}{2}
+\beamer@subsectionintoc {2}{4}{Basic Findings}{56}{0}{2}
+\beamer@sectionintoc {3}{Theory}{69}{0}{3}
+\beamer@subsectionintoc {3}{1}{Lower Prices}{69}{0}{3}
+\beamer@sectionintoc {4}{Extensions}{76}{0}{4}
+\beamer@subsectionintoc {4}{1}{Interesting Subgroups/ Models}{76}{0}{4}
+\beamer@sectionintoc {5}{Discussion and Next Steps}{84}{0}{5}
+\beamer@subsectionintoc {5}{1}{Discussion and Next Steps}{84}{0}{5}

@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx,amssymb,amsmath,setspace,comment,verbatim,titling,pgf,lscape}
+\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{bbm}
+\usepackage{csquotes}
+
+
+\usepackage[justification=centering]{caption}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+%%\usepackage{breqn}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+%\usepackage{siunitx}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\hypersetup{colorlinks,%
+						citecolor=black,%
+						filecolor=black,%
+						linkcolor=black,%
+						urlcolor=blue,%
+						}
+
+
+\setlength{\droptitle}{-50pt}
+
+\begin{document}
+
+\title{Hospital Pricing and Public Payments \\ SUPPLEMENTAL APPENDIX}
+\author{}
+\date{}
+\maketitle
+
+In this appendix, we present results for several alternative samples. Estimates for our net penalty variable are provided in Table \ref{tab:robust_sample}. Sample 1 is our primary sample presented in the main text in which we focus on a balanced panel of hospitals. In this sample, any hospital with missing HRRP and HVBP values from HCRIS is excluded from the analysis for all years. In Sample 2, we set any missing values of the net penalty to 0, under the assumption that such hospitals were excluded from the program in that year for some reason (e.g., too few admissions in a specific category); in Sample 3, we allow for an unbalanced panel and exclude only the given year in which a hospital has a missing mean payment in the HCCI data or a missing net penalty from HCRIS; and in Sample 4, we focus on a balanced panel in terms of hospital prices from HCCI but drop individual years in which net penalty is missing (i.e., the panel is initially balanced on price but ultimately unbalanced due to missing values in HCRIS). In all cases, our estimated effects are consistently between 1.4\% and 1.6\% and statistically significant.
+
+
+\newsavebox{\gfxbox}
+\savebox{\gfxbox}{
+\begin{tabular}{ccccccc}
+\hline	
+\hline
+ 							& \multicolumn{4}{c}{Sample}  		 \\
+							& 1 & 2 & 3 & 4      		\\
+\hline
+Net Penalty 					& 0.015***		&	0.016*** 	&	0.014***	&	0.016***		\\
+							& (0.005)		&	(0.004)	&	(0.005)	&	(0.005)		\\
+\hline
+Hos./Year Obs.					& 8,316		&	9,864 	&	10,052  	&	  9,425 		\\
+\hline
+\end{tabular}
+}
+\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
+\begin{table}[!h]
+\centering
+\caption{Robustness to Sample Construction}
+\label{tab:robust_sample}
+\usebox{\gfxbox}
+\par
+\begin{minipage}{\wd\gfxbox}
+\footnotesize
+Notes: All regressions are identical to those in Table 3. Sample descriptions provided in the text. *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
+\end{minipage}
+\end{table}
+
+
+
+
+\end{document}

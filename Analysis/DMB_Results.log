@@ -1,0 +1,333 @@
+-------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\immccar\CloudStation\Professional\Research Projects\Hospital Readmissions\Analysis\DMB_Results.log
+  log type:  text
+ opened on:   6 Jul 2017, 13:24:06
+
+. use "${DATA_FINAL}HRRP_Final_Data.dta", clear
+
+. xtset provider_number Year
+       panel variable:  provider_number (strongly balanced)
+        time variable:  Year, 2010 to 2015
+                delta:  1 unit
+
+. global MKT                              hsa_monopoly hsa_duopoly hsa_triopoly fips_monopoly fips_duopoly fips_triopoly
+
+. global POWER                    hsa_power_2 hsa_power_3 
+
+. global COUNTY_VARS              TotalPop Age_18to34 Age_35to64 Age_65plus Race_White Race_Black Income_50to75 ///
+>                                                 Income_75to100 Income_100to150 Income_150plus Educ_HSGrad Educ_Bach 
+
+. global HOSPITAL_VARS    teach1 teach2 System Nonprofit Profit Labor_Nurse Labor_Other ///
+>                                                 Beds vbp_rebate
+
+. global PRICE_VARS               lncmi lnc_p_d op_rev
+
+. global MISSING                  m_census m_sys m_lnurse m_lother m_p_d m_op                                            
+>                                          
+
+. global SHARE_OUTCOMES   medicaid_share medicare_share public_share other_share
+
+. global PRICE_OUTCOMES   lnprice
+
+. global NOMISSING                pen_both pen_one hsa_monopoly hsa_duopoly hsa_triopoly fips_monopoly fips_duopoly fips_
+> triopoly ///
+>                                                 medicaid_share medicare_share public_share other_share Profit vbp_rebat
+> e lncmi
+
+. ********************************************************************************
+. *** Table 1: Summary Statistics by whether a hospital is ever penalized
+. ********************************************************************************
+. qui: estpost ttest $NOMISSING , by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+pen_both            0.000        0.205        0.000
+pen_one             0.000        0.448        0.000
+hsa_monopoly        0.280        0.374        0.000
+hsa_duopoly         0.198        0.189        0.574
+hsa_triopoly        0.082        0.101        0.117
+fips_monop~y        0.135        0.143        0.571
+fips_duopoly        0.170        0.167        0.831
+fips_triop~y        0.093        0.112        0.154
+medicaid_s~e        0.093        0.128        0.000
+medicare_s~e        0.295        0.333        0.000
+public_share        0.388        0.461        0.000
+other_share         0.612        0.539        0.000
+Profit              0.082        0.200        0.000
+vbp_rebate          0.238        0.231        0.663
+lncmi               0.431        0.414        0.018
+---------------------------------------------------
+N                   12324                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest hsa_power_1 hsa_power_2 hsa_power_3 fips_power_1 fips_power_2 fips_power_3 , by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+hsa_power_1         0.503        0.363        0.000
+hsa_power_2         0.180        0.177        0.829
+hsa_power_3         0.317        0.460        0.000
+fips_power_1        0.510        0.407        0.000
+fips_power_2        0.300        0.286        0.473
+fips_power_3        0.190        0.307        0.000
+---------------------------------------------------
+N                   12324                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest $COUNTY_VARS if m_census==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+TotalPop      1309961.497  1143525.588        0.042
+Age_18to34          0.241        0.237        0.047
+Age_35to64          0.398        0.394        0.000
+Age_65plus          0.126        0.132        0.000
+Race_White          0.664        0.739        0.000
+Race_Black          0.192        0.133        0.000
+Income_50~75        0.178        0.180        0.012
+Income_7~100        0.125        0.123        0.001
+Income_1~150        0.143        0.130        0.000
+Income_150~s        0.121        0.098        0.000
+Educ_HSGrad         0.258        0.277        0.000
+Educ_Bach           0.195        0.186        0.000
+---------------------------------------------------
+N                   12323                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest teach1 teach2 System Nonprofit if m_sys==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+teach1              0.119        0.121        0.862
+teach2              0.566        0.517        0.019
+System              0.796        0.731        0.001
+Nonprofit           0.896        0.677        0.000
+---------------------------------------------------
+N                   12206                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest Labor_Nurse if m_lnurse==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+Labor_Nurse       558.128      542.610        0.510
+---------------------------------------------------
+N                   12204                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest Labor_Other if m_lother==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+Labor_Other      1233.337     1085.973        0.003
+---------------------------------------------------
+N                   12201                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest lnc_p_d if m_p_d==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+lnc_p_d            10.168        9.979        0.000
+---------------------------------------------------
+N                   12139                          
+---------------------------------------------------
+
+. 
+. qui: estpost ttest op_rev if m_op==0, by(everpen)
+
+. esttab ., cell((mu_1(fmt(3)  label(Never)) mu_2(label(Ever)) p))
+
+---------------------------------------------------
+                      (1)                          
+                                                   
+                    Never         Ever            p
+---------------------------------------------------
+op_rev              0.513        0.523        0.142
+---------------------------------------------------
+N                   10675                          
+---------------------------------------------------
+
+. ********************************************************************************
+. *** Table 2: Demonstration of penalties over time
+. ********************************************************************************
+. tabstat pen_none pen_one pen_both, by(year) f(%5.3f)
+
+Summary statistics: mean
+  by categories of: year_trend 
+
+year_trend |  pen_none   pen_one  pen_both
+-----------+------------------------------
+         1 |     1.000     0.000     0.000
+         2 |     1.000     0.000     0.000
+         3 |     1.000     0.000     0.000
+         4 |     0.167     0.833     0.353
+         5 |     0.168     0.832     0.368
+         6 |     0.109     0.891     0.448
+-----------+------------------------------
+     Total |     0.574     0.426     0.195
+------------------------------------------
+
+. 
+end of do-file
+
+. do "C:\Users\immccar\AppData\Local\Temp\STD05000000.tmp"
+
+. foreach y of global SHARE_OUTCOMES{
+  2. qui: reghdfe `y' pen_both pen_one $POWER  ${MKT} ${COUNTY_VARS} ${HOSPITAL_VARS} m_*  y2 y3 y4 y5 y6, absorb(provide
+> r_number fips) cluster(provider_number)
+  3. est store h_`y'
+  4. }
+
+. foreach y of global PRICE_OUTCOMES{
+  2. qui: reghdfe `y' pen_both pen_one  $POWER ${MKT}  ${COUNTY_VARS} ${HOSPITAL_VARS} ${PRICE_VARS}  m_*  y2 y3 y4 y5 y6
+> , absorb(provider_number fips) cluster(provider_number)
+  3. est store h_`y'
+  4. }
+
+. esttab h_medicaid_share h_medicare_share h_public_share h_other_share h_lnprice, b(%5.3f) se(%5.3f) star(* 0.1 ** 0.05 
+> *** 0.01) keep(pen_both pen_one $MKT $HOSPITAL_VARS $PRICE_VARS)
+
+--------------------------------------------------------------------------------------------
+                      (1)             (2)             (3)             (4)             (5)   
+             medicaid_s~e    medicare_s~e    public_share     other_share         lnprice   
+--------------------------------------------------------------------------------------------
+pen_both           -0.002          -0.007***       -0.009***        0.009***        0.018*  
+                  (0.003)         (0.002)         (0.003)         (0.003)         (0.010)   
+
+pen_one            -0.000          -0.007***       -0.007**         0.007**        -0.010   
+                  (0.002)         (0.002)         (0.003)         (0.003)         (0.007)   
+
+hsa_monopoly        0.011           0.009*          0.020*         -0.020*         -0.027   
+                  (0.009)         (0.005)         (0.010)         (0.010)         (0.022)   
+
+hsa_duopoly         0.012*         -0.002           0.011          -0.011          -0.012   
+                  (0.007)         (0.004)         (0.008)         (0.008)         (0.018)   
+
+hsa_triopoly        0.002          -0.008*         -0.006           0.006          -0.027*  
+                  (0.006)         (0.004)         (0.007)         (0.007)         (0.015)   
+
+fips_monop~y       -0.029***        0.000          -0.029**         0.029**         0.025   
+                  (0.011)         (0.006)         (0.013)         (0.013)         (0.027)   
+
+fips_duopoly       -0.018*          0.003          -0.016           0.016           0.036*  
+                  (0.010)         (0.005)         (0.011)         (0.011)         (0.021)   
+
+fips_triop~y       -0.004           0.001          -0.003           0.003           0.014   
+                  (0.007)         (0.004)         (0.008)         (0.008)         (0.016)   
+
+teach1             -0.002          -0.001          -0.003           0.003          -0.054** 
+                  (0.012)         (0.003)         (0.013)         (0.013)         (0.027)   
+
+teach2              0.005          -0.002           0.003          -0.003          -0.005   
+                  (0.003)         (0.002)         (0.003)         (0.003)         (0.008)   
+
+System              0.005          -0.003           0.002          -0.002           0.012   
+                  (0.004)         (0.003)         (0.005)         (0.005)         (0.014)   
+
+Nonprofit          -0.001          -0.004          -0.005           0.005           0.008   
+                  (0.009)         (0.008)         (0.010)         (0.010)         (0.034)   
+
+Profit              0.006          -0.004           0.002          -0.002           0.005   
+                  (0.009)         (0.008)         (0.010)         (0.010)         (0.037)   
+
+Labor_Nurse         0.000           0.000           0.000          -0.000           0.000** 
+                  (0.000)         (0.000)         (0.000)         (0.000)         (0.000)   
+
+Labor_Other         0.000           0.000***        0.000***       -0.000***       -0.000   
+                  (0.000)         (0.000)         (0.000)         (0.000)         (0.000)   
+
+Beds                0.000           0.000           0.000          -0.000           0.000   
+                  (0.000)         (0.000)         (0.000)         (0.000)         (0.000)   
+
+vbp_rebate          0.001          -0.008***       -0.007**         0.007**         0.012   
+                  (0.003)         (0.002)         (0.003)         (0.003)         (0.009)   
+
+lncmi                                                                              -0.846***
+                                                                                  (0.053)   
+
+lnc_p_d                                                                             0.764***
+                                                                                  (0.046)   
+
+op_rev                                                                             -2.197***
+                                                                                  (0.136)   
+--------------------------------------------------------------------------------------------
+N                   12322           12322           12322           12322           10560   
+--------------------------------------------------------------------------------------------
+Standard errors in parentheses
+* p<0.1, ** p<0.05, *** p<0.01
+
+. 
+. foreach y of global SHARE_OUTCOMES{
+  2. qui: reghdfe `y' pen_both pen_one  y2 y3 y4 y5 y6 evY2 evY3 evY4 evY5 evY6  $POWER ${COUNTY_VARS} ${HOSPITAL_VARS} $
+> {MKT} m_*, absorb(provider_number fips) cluster(provider_number)
+  3. qui: test evY2 evY3 evY4 evY5 evY6
+  4. scalar `y'_penalty=r(p)
+  5. }
+
+. foreach y of global PRICE_OUTCOMES{
+  2. qui: reghdfe `y' pen_both pen_one  y2 y3 y4 y5 y6 evY2 evY3 evY4 evY5 evY6   $POWER ${PRICE_VARS} ${COUNTY_VARS} ${H
+> OSPITAL_VARS} ${MKT} m_*, absorb(provider_number fips) cluster(provider_number)
+  3. qui: test evY2 evY3 evY4 evY5 evY6
+  4. scalar `y'_penalty=r(p)
+  5. }
+
+. foreach y of varlist $SHARE_OUTCOMES $PRICE_OUTCOMES {
+  2. scalar list `y'_penalty
+  3. }
+medicaid_share_penalty =  .01908938
+medicare_share_penalty =  .02683946
+public_share_penalty =  .00006122
+other_share_penalty =  .00006122
+lnprice_penalty =  .11590548
+
+. est clear
+
+. scalar drop _all
+
+. 
+end of do-file
+
+. exit, clear

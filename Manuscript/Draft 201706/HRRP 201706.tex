@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx,amssymb,amsmath,setspace,comment,verbatim,titling,pgf,lscape}
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=3cm]{geometry}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{bbm}
+\usepackage[justification=centering]{caption}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+%%\usepackage{breqn}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+%\usepackage{siunitx}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\hypersetup{colorlinks,%
+						citecolor=black,%
+						filecolor=black,%
+						linkcolor=black,%
+						urlcolor=blue,%
+						}
+\setstretch{1.5}
+
+\setlength{\droptitle}{-50pt}
+
+\begin{document}
+
+\title{Do Hospitals Cost-Shift? New Evidence from the Hospital Readmission Reduction Program}
+\author{%
+  Michael Darden \\[-1.5ex]
+  Tulane University \\
+  Ian M. McCarthy\thanks{Correspondence to: Ian McCarthy, Emory University, Department of Economics, 1602 Fishburne Dr., Atlanta, GA 30322, U.S.A. E-mail: ian.mccarthy@emory.edu} \\[-1.5ex]
+  Emory University \& NBER \\
+  Eric Barrette \\[-1.5ex]
+  Health Care Cost Institute
+}
+\date{June 2017}
+
+\maketitle
+
+\begin{abstract}
+The presumption that hospitals engage in cost-shifting is ubiquitous in healthcare policy circles, appearing as a central argument in debates over the Affordable Care Act and U.S. Supreme Court decisions, among others. Using the introduction of financial penalties from the Hospital Readmission Reduction Program (HRRP), we exploit the reduction in expected Medicare reimbursements to examine subsequent changes in hospital payer mix and pricing. Consistent with the standard theory of price discrimination in a two-price market, we find a significant reduction in the percentage of public payer patients admitted following the HRRP, but we find no evidence that hospitals subsequently increased prices for private patients. Our results therefore suggest that cost-shifting is not a pervasive strategy.
+\end{abstract}
+
+\vspace{-2ex}
+
+\begin{comment}
+Notes from calls:
+-- Big changes across hospitals and time, not just one big change across all hospitals
+-- Zack Cooper HCCI pricing paper (how to control for insurance HHI)
+-- Split sample by profit status, pre-HRRP medicare mix. Maybe more/less competitive insurance/hospital markets?
+-- How to incorporate relative market share? This could be third difference (instead of monopoly, duopoly, etc.), or just concentration in insurance industry?
+\end{comment}
+
+\section{Introduction}
+A longstanding debate in health economics and health policy concerns the extent to which hospitals increase prices to private insurance patients following reductions in public funding \citep{dranove1988}. Importantly, observed price differentials between public and private insurers need not be reflective of this dynamic ``cost-shifting'' argument \citep{morrisey1994}, and may instead be the result of price discrimination wherein hospitals simply negotiate higher prices among private insurance patients relative to publicly insured patients. Yet the assumption of dynamic cost-shifting as common hospital practice is ubiquitous in healthcare policy circles. For example, in the debate over the Affordable Care Act, President Obama said, ``You and I are both paying 900 bucks on average - our families - in higher premiums because of uncompensated care.''\footnote{For additional examples, see the many excerpts in \cite{dranove2017}, including additional statements from President Obama and the U.S. Supreme Court regarding the Affordable Care Act.} Differentiating between a cost-shifting strategy versus price discrimination has important implications for hospital policies and overall awareness of the underlying sources of hospital price changes. Indeed, if dynamic cost-shifting is a sufficiently strong mechanism for price changes, then \textit{increases} in public payer reimbursement rates would tend to decrease private insurance rates.
+
+Despite perception of cost-shifting as common practice, the evidence in this area is mixed \citep{morrisey1994,frakt2011}. Studying California hospitals from 1993-2001, \cite{zwanziger2006} estimate large effects on private prices due to reductions in Medicare and Medicaid prices, mirroring the findings of \cite{lee2003} and \cite{zwanziger2000}. The authors estimate that cost-shifting can explain 12.3\% of the total increase in private payers' prices from 1997 to 2001. \cite{white2013}, meanwhile, examines market level pricing from the Truven MarketScan data and finds that private prices decrease following reductions in Medicare reimbursement rates, consistent with standard profit maximizing behavior in a two-price market. Exploiting a change in Medicaid payment policies in California, \cite{dranove1998} similarly found little evidence of cost-shifting. More recently, using the 2008 stock market collapse as an exogenous change to hospital endowments, \cite{dranove2017} find that the average hospital does not appear to cost-shift, with some evidence of cost-shifting among hospitals with sufficient market share.
+
+With a handful of notable exceptions \citep{dranove1988,dranove1998,wu2010,dranove2017}, much of the cost-shifting literature examines hospital pricing and payer mix as a function of Medicare payment rates over time, with no clear exogenous change in public payer prices. In this paper, we exploit the recent adoption of the hospital readmission reduction program (HRRP) as an exogenous reduction in Medicare reimbursement rates to examine the effect of lower public reimbursement rates on hospital prices and hospital payer mix. Our data come from multiple sources, including price, payer mix, and other hospital characteristics from the Healthcare Cost Report Information System (HCRIS), detailed private insurance hospital claims data from the Health Care Cost Institute (HCCI), readmission figures from the Centers for Medicare and Medicaid Services (CMS) Hospital Compare website, hospitals services and available technologies from the American Hospital Association (AHA) annual surveys, and state-wide health insurance market data from the CMS Medical Loss Ratio files.
+
+We estimate a series of difference-in-difference models from 2010 through 2015, where treated hospitals are defined as those with readmission rates above the national average and the pre-post period is delineated by the adoption of the HRRP in 2012. Here, we find that hospitals reduce the proportion of public (Medicare and Medicaid) patients following the implementation of the HRRP, but we find little evidence of an increase in hospital prices, both overall and among not-for-profit hospitals specifically. Our results are therefore consistent with standard price discrimination mechanisms rather than dynamic cost-shifting.
+
+As discussed in our theoretical motivation in Section \ref{sec:motivation}, it is unclear what mechanisms allow a hospital, when bargaining with an insurer, to increase prices for private insurance patients following a reduction in public prices. We therefore also examine the influence of hospital and insurer market power on a hospital's propensity to cost-shift. Consistent with our theoretical prediction, we find some evidence of cost-shifting among hospitals with sufficient market share, but in a refinement to the results in \cite{dranove2017}, such cost-shifting only occurs if hospitals are in a position of significant relative market power compared to the average insurer.
+
+Our contribution to the literature is three-fold. First, we examine hospital responses to a plausibly exogenous change in effective public reimbursement rates, rather than identifying effects from overall trends in Medicare or Medicaid reimbursements over time. Our identification strategy also exploits heterogeneous effects of the HRRP across hospitals and time, with financial penalties increasing to as much as 3\% of a hospital's total Medicare reimbursements in 2015. Second, we consider additional dimensions over which hospitals are likely to respond following a reduction in reimbursement rates among one of many payers, including the provision of more profitable services such as cardiac procedures and imaging in lieu of relatively unprofitable services such as hospice care and psychiatric services \citep{horwitz2009}. And third, we contribute specifically to the literature on hospital responses to the introduction of the HRRP, much of which considers changes in hospital readmission rates or other quality outcomes \citep{carey2015,mellor2016}.
+
+In the remainder of the paper, we first present a theoretical examination of cost-shifting in a bargaining context in Section \ref{sec:motivation}, and we discuss the details of the HRRP in Section \ref{sec:hrrp}. Our data are presented in Section \ref{sec:data}, with our empirical analysis and results in Section \ref{sec:analysis}. We conclude with a discussion in Section \ref{sec:discuss}
+
+\section{Motivation}
+\label{sec:motivation}
+Cost-shifting has relatively limited theoretical appeal. For example, the presence of cost-shifting among a profit maximizing firm suggests that the firm was previously not maximizing profits. Under some conditions \citep{dranove1988}, a not-for-profit hospital may prefer to increase private prices when public reimbursement goes down; however, a hospital cannot unilaterally raise its private insurance prices and must instead bargain with private insurers, and increased reliance on private patients tends to reduce a hospital's bargaining power in that renegotiation.
+
+To examine these mechanisms more formally, we embed the hospital cost-shifting model from \cite{dranove1988} in a hospital-insurer bargaining model similar to that in \cite{ho2016} (HL), \cite{gowrisankaran2015}, \cite{lewis2015}, and \cite{dor2004}. Specifically, we consider a not-for-profit hospital whose objective is to maximize some function of profits and quantity of care provided, denoted by
+\begin{equation}
+ U\left( \pi_{j} = \sum_{i=1}^{N_{j}} \pi_{i,j}^{h} + \pi_{g,j}^{h}, \sum_{i=1}^{N_{j}} D_{i,j}^{h}, D_{g,j}^{h} \right),
+\label{eqn:nfp_objective}
+\end{equation}
+where $\pi_{j}$ denotes total profits for hospital $j$ and $D_{i,j}^{h}$ denotes hospital demand from insurer $i$. Following HL, we assume $$\pi_{i,j}^{h}=D_{i,j}^{h}(p_{i,j}-c_{i})$$, where $p_{i,j}$ denotes the negotiated price between insurer $i$ and hospital $j$. We also follow HL in assuming that patients are ``unaware or unable to determine their [financial] liability prior to choosing their provider.'' In other words, the negotiated price $p_{i,j}$ does not affect demand for a specific hospital. The subscript $g$ denotes profits or demand from public (or government) insurers, for which the price is administratively set at $p_{g}$. Finally, again following HL, we assume that profits for insurer $i$ are
+\begin{equation}
+\pi_{i}^{M} = D_{i} \left( \theta_{i} - \eta_{i} \right) - \sum_{j=1}^{N_{i}} D_{i,j}^{h} p_{i,j},
+\label{eqn:ins_profit}
+\end{equation}
+where $D_{i}$ denotes the number of enrollees for insurer $i$, $\theta_{i}$ denotes the insurer's premiums, $\eta_{i}$ denotes insurer costs per-enrollee other than inpatient hospital care, and $D_{i,j}^{h} p_{i,j}$ reflects payments to hospitals for care provided to the insurer's enrollees.
+
+The negotiated price between hospital $j$ and insurer $i$ is such that
+\begin{equation}
+ p_{ij}= \arg \max_{p_{ij}} \left(\triangle U_{j} \right)^{b_{j}} \times \left(\triangle \pi^{M}_{i} \right)^{1-b_{j}},
+ \label{eqn:neg_price}
+\end{equation}
+where $\triangle U_{j}$ denotes the change in hospital $i$'s utility from reaching an agrement with insurer $i$, and similarly $\triangle \pi^{M}_{i}$ denotes the change in insurer profits from an agreement with hospital $i$. $b_{j}$ denotes the bargaining weight of hospital $j$, expressed as the weight to which the hospital's payoffs are given in the overall net value.
+
+The first order condition for equation \ref{eqn:neg_price} can be simplified to
+\begin{equation}
+ b_{j} \triangle \pi_{i}^{M} \pderiv{U_{j}}{\pi_{ij}^{h}} - (1-b_{j}) \triangle U_{j} = 0.
+\label{eqn:price_foc}
+\end{equation}
+Applying the implicit function theorem yields the relevant comparative static:
+\begin{equation}
+\deriv{p_{ij}}{p_{g}} = \frac{- b_{j} \triangle \pi_{i}^{M} \pderiv{^{2}U_{j}}{\pi_{j}^{2}}D_{g}^{h}}{D_{ij}^{h}\left(b_{j} D_{ij}^{h} \pderiv{^{2}U_{j}}{\pi_{j}^{2}} - (1-b_{j}) \pderiv{U_{j}}{\pi_{j}} \right)}.
+\label{eqn:comp_static}
+\end{equation}
+
+We can see immediately from equation \ref{eqn:comp_static} that $\deriv{p_{ij}}{p_{g}}<0$ whenever $\pderiv{^{2}U_{j}}{\pi_{j}^{2}}$. Hospitals must therefore have some diminishing marginal utility of profits for dynamic cost-shifting to occur. Interestingly, this result exists without hospitals deriving utility directly from quantity of care provided, which is necessary for cost-shifting to occur in \cite{dranove1988}. Moreover, a hospital's incentive to cost-shift is larger as the insurer's outside option decreases (i.e., $\triangle \pi_{i}^{M}$ increases) and as the number of public-payer patients increases, $D_{g}^{h}$, while the incentive to cost-shift is reduced if the hospital receives a larger number of patients from insurer $i$.
+
+Practically, equation \ref{eqn:comp_static} suggests that hospitals will be more likely to cost-shift if they have some relative market power, where the insurer is heavily dependent on the hospital but where the hospital does not receive a large number of patients from the insurer. The incentive to cost-shift is also increasing in the hospital's bargaining weight, $b_{j}$, provided the hospital is not ``too'' risk-averse.\footnote{Formally, $D_{ij}^{h}\frac{U''(\cdot)}{U'(\cdot)}>-1$ is a sufficient (but not necessary) condition for $\deriv{p_{ij}}{p_{g}}$ to be decreasing in $b_{j}$.}
+
+\section{Background}
+\label{sec:hrrp}
+The Hospital Readmissions Reduction Program (HRRP) was introduced as part of the Accountable Care Act in 2010 and became effective on October 1, 2012. The program penalizes hospitals for ``excessive'' readmissions, where excessive is defined as 30-day risk-adjusted readmission rates in excess of the national average. Initially, readmissions were calculated for patients with acute myocardial infarction (AMI), heart failure (HF), and pneumonia (PN), but the list of relevant conditions has since expanded to include chronic obstructive pulmonary disease (COPD) and total hip and knee replacements.
+
+In calculating a hospital's relevant readmission rate, two aspects of the HRRP are particularly salient for our analysis. First, any financial penalty is levied on a hospital's total Medicare payments and not specifically on the conditions being measured. This means that the effective reimbursement rate for all conditions is potentially reduced due to the HRRP. Second, readmission rates are calculated by taking the average 3-year rates for each condition. For example, the financial penalties for fiscal year (FY) 2014 (which runs from October 2013 through September 2014) are based on readmission rates from July 2009 through the end of June 2012. Since risk-adjusted readmission rates as well as the national benchmark rate are already uncertain to a given hospital, the lagged nature of the readmission calculations further reduces any endogeneity concerns surrounding a hospital's exposure to financial penalties under the HRRP.
+
+The magnitude of any penalty is also potentially sizeable, with maximum penalties of 1\% of total Medicare payments in 2012 and increasing to 3\% in 2015. Aggregate penalties collected by CMS have subsequently increased from \$290 million in 2012 to \$420 million in 2015 \citep{mellor2016}. Moreover, the hospital is penalized based on the maximum readmission rate across all conditions considered, again exposing the hospital to risk across more than just one condition, and readmission rates are assigned to the hospital of initial discharge regardless of where the readmission takes place.
+
+\section{Data}
+\label{sec:data}
+
+\section{Empirical Analysis}
+\label{sec:analysis}
+
+\section{Discussion}
+\label{sec:discuss}
+
+\pagebreak
+\bibliographystyle{authordate1}
+\bibliography{BibTeX_Library}
+
+
+\end{document}

@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx,amssymb,amsmath,setspace,comment,verbatim,titling,pgf,lscape}
+\usepackage[left=3cm,right=3cm,top=3.5cm,bottom=3cm]{geometry}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{bbm}
+\usepackage[justification=centering]{caption}
+%%\usepackage{breqn}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+%\usepackage{siunitx}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\hypersetup{colorlinks,%
+						citecolor=black,%
+						filecolor=black,%
+						linkcolor=black,%
+						urlcolor=blue,%
+						}
+\setstretch{1.5}
+
+\setlength{\droptitle}{-50pt}
+
+\begin{document}
+
+\title{Cost-shifting or price discrimination? New Evidence from the Hospital Readmission Reduction Program}
+\author{%
+  Eric Barrette \\[-1.5ex]
+  Health Care Cost Institute \\
+  Michael Darden \\[-1.5ex]
+  Tulane University \\
+  Ian M. McCarthy\thanks{Correspondence to: Ian McCarthy, Emory University, Department of Economics, 1602 Fishburne Dr., Atlanta, GA 30322, U.S.A. E-mail: ian.mccarthy@emory.edu} \\[-1.5ex]
+  Emory University \\
+}
+\date{April 2017}
+\maketitle
+
+\vspace{-2ex}
+\section{Introduction}
+A longstanding literature in health economics and policy purports that hospitals may cost-shift by increasing prices to private insurance patients when confronted with reductions in profitability of public payers \cite{dranove1988}. Despite a general lack of evidence, the assumption of cost-shifting as common hospital practice appears almost ubiquitous in the healthcare policy debate.\footnote{See, for example, the many excerpts in \cite{dranove2013}, including statements from President Barack Obama and the U.S. Supreme Court.} Importantly, cost-shifting differs from standard price discrimination, wherein hospitals simply negotiate higher prices among private insurance patients relative to publicly insured patients. \cite{morrisey1994} introduced the term ``dynamic cost-shifting'' precisely to differentiate between observed price differentials due to price discrimination versus actively raising prices for private patients when confronted with relatively lower prices from public patients.
+
+Differentiating between a cost-shifting strategy versus price discrimination has important implications for hospital policies and overall awareness of the true underlying sources of hospital price changes. Indeed, if dynamic cost-shifting is a sufficiently strong mechanism for price changes, then \textit{increases} in public payer reimbursement rates would tend to decrease private insurance rates. In this paper, we examine the effect of lower public reimbursement rates on hospital payer mix and hospital prices, where we exploit the recent adoption of the hospital readmission reduction program (HRRP) as an exogenous reduction in Medicare reimbursement rates. As expected from a profit maximizing firm in a two-price market, we find that hospitals reduce the proportion of public (Medicare and Medicaid) patients; however, we find little evidence of an increase in hospital prices, both overall and among not-for-profit hospitals specifically. Our results are therefore more consistent with standard price discrimination mechanisms rather than dynamic cost-shifting.
+
+Despite public perception of cost-shifting as common practice, the evidence in this area is mixed at best. Studying California hospitals from 1993-2001, \cite{zwanziger2006} estimate large effects on private prices due to reductions in Medicare and Medicaid prices, mirroring the findings of \cite{lee2003} and \cite{zwanzinger2000}. The authors estimate that cost-shifting can explain 12.3\% of the total increase in private payers' prices from 1997 to 2001. \cite{white2013}, meanwhile, examines market level pricing from the Truven MarketScan data and finds that private prices actually decrease following reductions in Medicare reimbursement rates. This latter result may be driven by changes in overall hospital cost structure following reductions in Medicare reimbursements.
+
+Much of the existing cost-shifting literature looks at broad trends in Medicare payment rates over time with no clear exogenous change in public payer prices. Some exceptions include \cite{dranove1988}, \cite{dranove1998}, \cite{wu2010}, and \cite{dranove2013}.
+
+As discussed in more detail in Section \ref{sec:motivation}, cost-shifting has only limited theoretical appeal. For example, the presence of cost-shifting among a profit maximizing firm suggests that the firm was previously not maximizing profits. Even among not-for-profit firms, the bargaining process between insurers and hospitals should depress a hospital's ability to increase prices to offset a reduction in public payer reimbursements.
+
+Our contribution is two-fold: 1) examination of cost-shifting versus price discrimination with plausibly exogenous change in effective reimbursement rates; 2) consideration of additional dimensions over which hospitals (or any multi-product firm) are likely to respond; and 3) study of hospital responses to financial incentives, with implications for other pay for performance models.
+
+\pagebreak
+\bibliographystyle{authordate1}
+\bibliography{BibTeX_Library}
+
+
+\end{document}

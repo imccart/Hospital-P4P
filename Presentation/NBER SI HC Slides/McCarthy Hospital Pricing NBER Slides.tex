@@ -1,0 +1,408 @@
+\documentclass[t]{beamer}
+\usetheme[progressbar=frametitle]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{graphics,graphicx,amssymb,amsmath,pgf,comment,hyperref}
+%\usepackage[xcolor=pst]{pstricks}
+\usepackage{array}
+\usepackage{pgfshade}
+\usepackage[round]{natbib}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{pifont}
+\usepackage{dcolumn}
+\usepackage{textpos}
+\usepackage{color}					
+\usepackage{xcolor,colortbl}
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{curves}
+\usepackage{mathtools}
+\usetikzlibrary{snakes,arrows,positioning}
+\def\augie{\fontencoding{T1}\fontfamily{augie}\selectfont}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+
+\usepackage{xspace}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\usetikzlibrary{calc,decorations.pathmorphing,patterns}
+\pgfdeclaredecoration{penciline}{initial}{
+    \state{initial}[width=+\pgfdecoratedinputsegmentremainingdistance,
+    auto corner on length=1mm,]{
+        \pgfpathcurveto%
+        {% From
+            \pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}
+                      {\pgfdecorationsegmentamplitude}
+        }
+        {%  Control 1
+        \pgfmathrand
+        \pgfpointadd{\pgfqpoint{\pgfdecoratedinputsegmentremainingdistance}{0pt}}
+                    {\pgfqpoint{-\pgfdecorationsegmentaspect
+                     \pgfdecoratedinputsegmentremainingdistance}%
+                               {\pgfmathresult\pgfdecorationsegmentamplitude}
+                    }
+        }
+        {%TO
+        \pgfpointadd{\pgfpointdecoratedinputsegmentlast}{\pgfpoint{1pt}{1pt}}
+        }
+    }
+    \state{final}{}
+}
+
+
+\title{Hospital Pricing and Public Payments}
+\date{July 26, 2018}
+\author{Michael Darden, \textbf{Ian McCarthy}, and Eric Barrette}
+\institute{2018 NBER Summer Institute, Health Care}
+
+\begin{document}
+
+\maketitle
+
+\section{Motivation}
+\begin{frame}{Main Question}
+    \only<1->{
+        How do hospital prices change following reductions in Medicare payments?
+    }
+    \only<2>{
+        \begin{enumerate}
+            \item Standard two-price market $\rightarrow$ price decreases
+            \item Dynamic cost-shifting $\rightarrow$ price increases
+        \end{enumerate}
+    }
+\end{frame}
+
+\begin{frame}{Difficult to identify cost-shifting}
+    \begin{itemize}
+        \item Poor pricing data
+        \item Different sources of public payment reductions
+        \item Different magnitudes of public payment reductions
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Our approach}
+    \begin{itemize}
+        \item Examine negotiated prices from HCCI
+        \item Exploit payment changes from HRRP and HVBP
+        \item Variation in penalties at both intensive and extensive margin
+    \end{itemize}
+\end{frame}
+
+
+\section{Institutional Background}
+\begin{frame}{How are hospital prices negotiated?}
+    \begin{itemize}
+        \item Often 3 year contracts
+        \item Negotiated as \% of charge or markup over Medicare
+        \item Some carve-out and stop-loss provisions
+        \item Negotiations usually relatively broad (for given insurer)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hospital Readmission Reduction Program}
+    \begin{itemize}
+        \item Initiated FY 2013 (October 2012)
+        \item Penalty for ``excess'' risk-adjusted readmission rates for selected categories
+        \item FY 2013 penalty from data in 2009-2011
+        \item Penalties applied to base payments on \textbf{all} Medicare inpatient admissions
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hospital Value Based Purchasing}
+    \begin{itemize}
+        \item Initiated FY 2013 (October 2012)
+        \item Penalty or reward based on performance in several measures
+        \item FY 2013 penalty/bonus from data in 2009-2011
+    \end{itemize}
+\end{frame}
+
+
+\section{Empirical Approach}
+\begin{frame}{Data Sources}
+    \begin{itemize}
+        \item Health Care Cost Institute
+        \item Hospital Compare
+        \item American Community Survey
+        \item American Hospital Association (AHA) annual surveys
+        \item Healthcare Cost Report Information System (HCRIS)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dataset}
+    1,386 inpatient prospective payment system hospitals from 2010 to 2015:
+    \begin{itemize}
+        \item Drop smaller hospitals and those without sufficient history (such that HRRP and HVBP don't apply)
+        \item Focus on acute care admissions
+        \item Drop all transfer admissions and those in which the patient traveled more than 180 miles
+        \item Claims with incomplete data - likely evidence of procedural errors - are dropped
+        \item Claims with a payment ratio below the 5th percentile and above the 95th percentile were excluded
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Initial Specification}
+    \only<1>{
+        \begin{equation*}
+            y_{ht} = \alpha_{h} + \beta x_{ht} +  \gamma Z_{ct} + \delta 1[Penalty]  + \theta_{t}  +  \epsilon_{ht}
+        \end{equation*}
+    }
+    \only<2>{
+        \begin{equation*}
+            y_{ht} = \alpha_{h} + \beta x_{ht} +  \gamma Z_{ct} + \delta 1[Penalty]  + \theta_{t}  +  \epsilon_{ht}
+        \end{equation*}
+        \begin{itemize}
+            \item[] $y_{ht} =$ outcome for hospital $h$ in year $t$
+            \item[] $\alpha_{h}=$ hospital fixed effect
+            \item[] $x_{ht}=$ time-varying hospital characteristics
+            \item[] $Z_{ct}=$ time-varying county characteristics
+            \item[] $\theta_{t}=$ year fixed effect
+        \end{itemize}
+        $1[Penalty]$  penalty variable is zero in years 2010 and 2011 for all hospitals.
+    }
+    \only<3>{
+         \begin{equation*}
+            \textcolor{red}{y_{ht}} = \alpha_{h} + \beta x_{ht} +  \gamma Z_{ct} + \delta \textcolor{red}{1[Penalty]}  + \theta_{t}  +  \epsilon_{ht}
+        \end{equation*}
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{cccc}
+            \hline\hline
+            Fiscal & Sample 		&  Payment $\$$			& Percent \\
+            Year   &  Size    		&  Mean (St. Dev.) 			& Penalized \\
+            \hline
+            2010 &      1,386		& 	10,729   (4,937)	& 0.00  \\
+            2011 &      1,386		& 	11,603   (5,076)	& 0.00   \\
+            2012 & 	1,386 		& 	12,079   (5,477) 	& 0.32   \\
+            2013 & 	1,386		& 	12,668   (5,568)	& 0.74  \\
+            2014 & 	1,386		&	12,796   (5,444)	& 0.76 \\
+            2015 &     1,386		& 	13,398   (5,922)	& 0.79 \\
+            \hline
+            Total & 	8,316		& 12,212   (5,482)	&	 0.43 \\
+            \hline
+        \end{tabular}}
+        \end{table}
+    }
+\end{frame}
+
+\section{Results}
+\begin{frame}{Outline}
+    \only<1>{
+    \begin{enumerate}
+        \item Fixed effects estimates
+        \item Alternative specifications and controls
+        \item Extensive vs intensive margins
+        \item Heterogeneities in effects (by objective function, organizational structure, market power)
+        \item Other explanations
+    \end{enumerate}
+    }
+    \only<2>{
+    \begin{enumerate}
+        \item \textcolor{red}{Fixed effects estimates}
+        \item \textcolor{red}{Alternative specifications and controls}
+        \item Extensive vs intensive margins
+        \item Heterogeneities in effects (by objective function, organizational structure, market power)
+        \item \textcolor{red}{Other explanations}
+    \end{enumerate}
+    }
+\end{frame}
+
+\begin{frame}{Initial Results}
+    \only<1>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline
+ 			    Log Mean		& Log Mean          &  Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        &  Discharges          	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011)
+        \end{tabular}}
+        \end{table}
+    }
+    \only<2>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline	
+ 			    Log Mean		& Log Mean          & Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        & Discharges      	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011) \\
+            \hline
+            \multicolumn{5}{l}{Differential Trends} \\
+            \hline
+                0.010**	&	0.019**	&	-0.038	&	-0.026***	&	-0.011	\\
+	           (0.005)	&	(0.008)	&	(0.023)	&	(0.007)	    &	(0.012)	\\ \relax
+                [0.497] &  [0.041]  &  [0.250]   &  [0.005]     & [0.446]     \\
+        \end{tabular}}
+        \end{table}
+    }
+    \only<3>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline	
+ 			    Log Mean		& Log Mean          & Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        & Discharges      	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011)	\\
+            \hline
+            \multicolumn{5}{l}{Adding County Fixed Effects} \\
+            \hline
+                0.015***	&	0.009	&	-0.048**	&	-0.027***	&	-0.003	\\
+	            (0.005)	&	(0.008)	&	(0.022)	&	(0.007)	&	(0.011)	\\
+        \end{tabular}}
+        \end{table}
+    }
+    \only<4>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline	
+ 			    Log Mean		& Log Mean          & Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        & Discharges      	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011)	\\
+            \hline
+            \multicolumn{5}{l}{Controlling for Medicaid Expansion} \\
+            \hline
+                0.014***	&	0.008	&	-0.044**	&	-0.027***	&	-0.005	\\
+	           (0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
+        \end{tabular}}
+        \end{table}
+    }
+    \only<5>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline	
+ 			    Log Mean		& Log Mean          & Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        & Discharges      	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011)	\\
+            \hline
+            \multicolumn{5}{l}{Controlling for HCAHPS Overall Rating} \\
+            \hline
+                0.014***	&	0.008	&	-0.045**	&	-0.026***	&	-0.003	\\
+	           (0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
+        \end{tabular}}
+        \end{table}
+    }
+    \only<6>{
+        \begin{table}[htb!]
+        \centering
+        \footnotesize
+        \centerline{
+        \begin{tabular}{rrrrr}
+            \hline	
+ 			    Log Mean		& Log Mean          & Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			    Payment			& Net Charge        & Discharges      	& Discharges       		& Discharges        	\\
+            \hline\hline
+                0.014***		&	0.008        &   -0.045**	  &	-0.027***	  &	-0.004	\\
+	               (0.005)		&	(0.008)      &   (0.021)	  &	(0.007)	      &	(0.011)	\\
+            \hline
+            \multicolumn{5}{l}{Dropping FY 2012} \\
+            \hline
+                0.012**	&	0.010	&	-0.045*	&	-0.028***	&	-0.007	\\
+		        (0.005)	&	(0.009)		&(0.023)		&(0.007)	&	(0.012)	\\
+        \end{tabular}}
+        \end{table}
+    }
+\end{frame}
+
+\begin{frame}{Other Mechanisms}
+    \only<1>{
+        \metroset{block=fill}
+        \begin{block}{1. Quality increased}
+            \begin{itemize}
+                \item Gupta \textit{et al.} (2017) - HRRP $\rightarrow$ readmission reduction but mortality increase (Medicare only)
+                \item Gupta (2016) - HRRP $\rightarrow$ slight reduction in mortality (Medicare only)
+                \item Ibrahim \textit{et al.} (2016) - readmission reductions largely coding changes
+                \item Demiralp \textit{et al.} (2018) - HRRP $\rightarrow$ readmission reduction for Medicare but no change for private insurance
+                \item No effects of HVBP across several studies
+                \item Economically small and statistically insignificant effect on private insurance readmissions in our data
+            \end{itemize}
+        \end{block}
+    }
+
+    \only<2>{
+        \metroset{block=fill}
+        \begin{block}{2. Shift toward more profitable services}
+            \begin{itemize}
+                \item Construct ``profitable services index'' following services identified in Horwitz and Nichols (2009)
+                \item Economically small and statistically insignificant effects on types of services offered (on the extensive margin)
+            \end{itemize}
+        \end{block}
+    }
+
+    \only<3>{
+        \metroset{block=fill}
+        \begin{block}{3. Increase in the intensity of treatment}
+        Economically small and statistically insignificant effects on:
+            \begin{itemize}
+                \item Length of stay
+                \item DRG weights
+            \end{itemize}
+        \end{block}
+    }
+
+    \only<4>{
+        \metroset{block=fill}
+        \begin{block}{4. Other costly investments}
+            Economically small and statistically insignificant effect on costs per discharge (from HCRIS reports)
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}{How could this happen?}
+    \begin{enumerate}
+        \item Hospital objective function and risk aversion
+        \item Informal negotiation process
+        \item Insurer allows higher price to maintain competition (perhaps for specific service lines)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Summary of Results}
+    \begin{itemize}
+        \item Unique data on hospital pricing with plausibly exogenous changes in Medicare payments
+        \item Cross-sectional and longitudinal variation in penalties on extensive and intensive margins
+        \item Robust finding of significant increase in prices of around 1.4\% among penalized hospitals
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implications for P4P}
+    \begin{itemize}
+        \item Does \textbf{not} imply all pay for performance plans are useless
+        \item HRRP/HVBP are relatively blunt instruments that may not reflect a true quality signal or new information to the market
+    \end{itemize}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+
