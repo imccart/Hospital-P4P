@@ -158,14 +158,6 @@ Another proxy for bargaining position is whether a hospital is aligned with its 
 We note that predictions involving a hospitals' bargaining position are less clear when we incorporate the insurer's choice of premiums in the insurance market. If the insurance market is heavily concentrated, then insurers can pass health care price changes on to their plan enrollees \citep{trish2015,ho2017}. This intuition leads to conflicting conclusions: cost-shifting is likely to occur when insurers have a particularly small market share (such that hospitals can leverage their bargaining position), but perhaps also when insurers have a particularly large market share (such that insurers can pass price increases on to plan enrollees). The role of insurance markets on the prevalence or magnitude of cost-shifting is therefore empirically difficult to measure without detailed data on insurance premiums and insurer market shares (at a local level). Because we lack reliable information on local area insurance concentration, we leave as an open question the extent to which cost-shifting is more prominent in markets with both provider market power and a concentrated insurance market.
 
 
-
-
-
-
-
-
-
-
 \section{Mechanisms for Payment Increases}
 \label{sec:alt}
 The results in Section \ref{sec:Empirical} show that penalized hospitals were able to increase private insurance payments by 1.4\% on average, and this effect is robust to a series of alternative specifications including allowing for differential time trends among penalized versus non-penalized hospitals. In this section, we consider different mechanisms that may have facilitated such an increase.
@@ -431,9 +423,56 @@ Notes: Each point estimate represents the estimated coefficient on a binary vari
 %\end{minipage}
 %\end{table}
 
+\newpage
+\savebox{\gfxbox}{
+\footnotesize
+\begin{tabular}{llllll}
+\hline	
+\hline
+ 			& Log Mean 				& Log Mean			& Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
+			& Payment		& 	Net Charge	& Discharges      		& Discharges       	& Discharges    \\
+	\hline
+											
+\multicolumn{6}{c}{1. Hospital, Year, and County Fixed Effects} 											\\
+\hline											
+Net Penalty 	&	0.015***	&	0.009	&	-0.048**	&	-0.027***	&	-0.003	\\
+			&	(0.005)	&	(0.008)	&	(0.022)	&	(0.007)	&	(0.011)	\\
+\hline											
+\multicolumn{6}{c}{2. Controlling for Medicaid Expansion States} 											\\
+\hline											
+Net Penalty 	&	0.014***	&	0.008	&	-0.044**	&	-0.027***	&	-0.005	\\
+			&	(0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
+\hline											
+\multicolumn{6}{c}{3. Controlling for Overall HCAHPS Hospital Rating} 											\\
+\hline											
+Net Penalty 	&	0.014***	&	0.008	&	-0.045**	&	-0.026***	&	-0.003	\\
+			&	(0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
+\hline											
+\multicolumn{6}{c}{4. Dropping Fiscal 2012} 											\\
+\hline											
+Net Penalty 	&	0.012**	&	0.010	&	-0.045*	&	-0.028***	&	-0.007	\\
+			&(0.005)		&	(0.009)		&(0.023)		&(0.007)	&	(0.012)	\\
+\hline											
+\multicolumn{6}{c}{5. Controlling for Case Mix} 		\\								
+\hline											
+Net Penalty 	&	0.014***	&	0.004	&	-0.044**	&	-0.026***	&	-0.005	\\
+				&(0.005)		&	(0.008)		&(0.021)		&(0.007)	&	(0.011)	\\
+\hline
 
-
-
+\end{tabular}
+}
+\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
+\begin{table}[htbp!]
+\centering
+\caption{Robustness Checks}
+\label{tab:robustness}
+\usebox{\gfxbox}
+\par
+\begin{minipage}{\wd\gfxbox}
+\footnotesize
+Notes: Further controls include those in our baseline specification for mean payments.  The p-value in the first row of results is in reference to the null hypothesis that trends in the outcome of interest are the same between ever-penalized and never-penalized hospitals conditional on the model covariates.  In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.   *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
+\end{minipage}
+\end{table}
 
 
 \newpage
@@ -499,141 +538,6 @@ Mean 						&13,762.86	&	12,015.13	&	13,071.17	&	12,981.58	&	11,308.56	&	8,911.19
 Notes: All regressions include hospital and year fixed effects.  The dependent variable is the log of average payments for each associated acute care admission.  Further controls include those in our baseline specification for mean payments.  In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.  We restrict the sample to include at least 25 admissions per hospital per year.  *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
 \end{minipage}
 \end{table}
-
-
-
-\newpage
-\savebox{\gfxbox}{
-\footnotesize
-\begin{tabular}{llllll}
-\hline	
-\hline
- 			& Log Mean 				& Log Mean			& Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
-			& Payment		& 	Net Charge	& Discharges      		& Discharges       	& Discharges    \\
-	\hline
-											
-\multicolumn{6}{c}{1. Hospital, Year, and County Fixed Effects} 											\\
-\hline											
-Net Penalty 	&	0.015***	&	0.009	&	-0.048**	&	-0.027***	&	-0.003	\\
-			&	(0.005)	&	(0.008)	&	(0.022)	&	(0.007)	&	(0.011)	\\
-\hline											
-\multicolumn{6}{c}{2. Controlling for Medicaid Expansion States} 											\\
-\hline											
-Net Penalty 	&	0.014***	&	0.008	&	-0.044**	&	-0.027***	&	-0.005	\\
-			&	(0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
-\hline											
-\multicolumn{6}{c}{3. Controlling for Overall HCAHPS Hospital Rating} 											\\
-\hline											
-Net Penalty 	&	0.014***	&	0.008	&	-0.045**	&	-0.026***	&	-0.003	\\
-			&	(0.005)	&	(0.008)	&	(0.021)	&	(0.007)	&	(0.010)	\\
-\hline											
-\multicolumn{6}{c}{4. Dropping Fiscal 2012} 											\\
-\hline											
-Net Penalty 	&	0.012**	&	0.010	&	-0.045*	&	-0.028***	&	-0.007	\\
-			&(0.005)		&	(0.009)		&(0.023)		&(0.007)	&	(0.012)	\\
-\hline											
-\multicolumn{6}{c}{5. Controlling for Case Mix} 		\\								
-\hline											
-Net Penalty 	&	0.014***	&	0.004	&	-0.044**	&	-0.026***	&	-0.005	\\
-				&(0.005)		&	(0.008)		&(0.021)		&(0.007)	&	(0.011)	\\
-\hline
-
-\end{tabular}
-}
-\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
-\begin{table}[htbp!]
-\centering
-\caption{Robustness Checks}
-\label{tab:robustness}
-\usebox{\gfxbox}
-\par
-\begin{minipage}{\wd\gfxbox}
-\footnotesize
-Notes: Further controls include those in our baseline specification for mean payments.  The p-value in the first row of results is in reference to the null hypothesis that trends in the outcome of interest are the same between ever-penalized and never-penalized hospitals conditional on the model covariates.  In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.   *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
-\end{minipage}
-\end{table}
-
-
-\newpage
-\savebox{\gfxbox}{
-\footnotesize
-\begin{tabular}{lllllll}
-\hline\hline
- 				&  Patient-Level & Log & Profit Index 	& Average DRG & Average  & Log Cost per     	\\
- 				& 	Readmission & Charge & 			& Weight 		& LOS & 	Discharge 	\\
-\hline
-\hline							
-Net Penalty  		& -0.001 & 0.004 &	0.002	&	0.004	& 	0.015  & -0.001 \\
-				& (0.001) & (0.004) &	(0.001)	&	(0.004)	&	(0.012) & (0.001)  	\\
-n				& 3,345,641 & 8,316 & 8,316& 8,316 & 8,316 & 8,238  \\
-															
-\hline
-\end{tabular}
-}
-\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
-\begin{table}[htbp!]
-\centering
-\caption{Changes in Quality or Treatment Intensity}
-\label{tab:other_results}
-\usebox{\gfxbox}
-\par
-\begin{minipage}{\wd\gfxbox}
-\footnotesize
-Notes: All regressions include hospital and year fixed effects, and other hospital level controls include bed count, number of nurses, and number of other non-medical staff. In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.   *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
-\end{minipage}
-\end{table}
-
-\newpage
-\savebox{\gfxbox}{
-\footnotesize
-\begin{tabular}{llllll}
-\hline	
-\hline
- 			& Log Mean			& Log Mean				& Log Medicaid 	   	& Log Medicare   		& Log Other  			\\
-			& Payment			& Net Charge				& Discharges      		& Discharges       	& Discharges    \\
-	\hline
-\multicolumn{6}{c}{Non-profit Hospitals}\\											
-\hline											
-Net Penalty 	&	0.015***	&	0.008	&	-0.046*	&	-0.029***	&	-0.011	\\
-			&	(0.005)	&	(0.009)	&	(0.024)	&	(0.007)	&	(0.012)	\\
-\hline											
-\multicolumn{6}{c}{Non-Profit Hospitals with Penalty Specific Trends} 											\\
-						\hline					
-Net Penalty 	&	0.012**	&	0.015*	&	-0.039	&	-0.023***	&	-0.015	\\
-			&	(0.005)	&	(0.009)	&	(0.026)	&	(0.007)	&	(0.014)	\\
-p-value & 0.805 & 0.205 & 0.241 & 0.001 & 0.849 \\
-\hline											
-\multicolumn{6}{c}{For-profit Hospitals}\\											
-\hline											
-Net Penalty 	&	0.020	&	0.023	&	-0.018	&	-0.008	&	0.026	\\
-			&	(0.014)	&	(0.021)	&	(0.050)	&	(0.018)	&	(0.020)	\\
-\hline											
-\multicolumn{6}{c}{For-Profit Hospitals with Penalty Specific Trends} 											\\
-\hline											
-Net Penalty	&	0.011	&	0.043*	&	0.002	&	-0.028	&	0.007	\\
-			&	(0.014)	&	(0.023)	&	(0.050)	&	(0.017)	&	(0.020)	\\
-p-value & 0.417 & 0.025 & 0.885 & 0.013 & 0.003 \\
-\hline
-\end{tabular}
-}
-\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
-\begin{table}[htbp!]
-\centering
-\caption{Results by Profit Status}
-\label{tab:byprofit}
-\usebox{\gfxbox}
-\par
-\begin{minipage}{\wd\gfxbox}
-\footnotesize
-Notes: All regressions include hospital and year fixed effects.  Further controls include those in our baseline specification for mean payments.  The p-values are in reference to the null hypothesis that trends in the outcome of interest are the same between ever-penalized and never-penalized hospitals conditional on the model covariates.  In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.   *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
-\end{minipage}
-\end{table}
-
-
-
-
-
-
 
 
 \newpage
@@ -715,17 +619,34 @@ Notes: Empirical models are identical to those in Table \ref{tab:baselineresults
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+\newpage
+\savebox{\gfxbox}{
+\footnotesize
+\begin{tabular}{lllllll}
+\hline\hline
+ 				&  Patient-Level & Log & Profit Index 	& Average DRG & Average  & Log Cost per     	\\
+ 				& 	Readmission & Charge & 			& Weight 		& LOS & 	Discharge 	\\
+\hline
+\hline							
+Net Penalty  		& -0.001 & 0.004 &	0.002	&	0.004	& 	0.015  & -0.001 \\
+				& (0.001) & (0.004) &	(0.001)	&	(0.004)	&	(0.012) & (0.001)  	\\
+n				& 3,345,641 & 8,316 & 8,316& 8,316 & 8,316 & 8,238  \\
+															
+\hline
+\end{tabular}
+}
+\setlength{\captionmargin}{.5 \textwidth} \addtolength{\captionmargin}{-.5\wd\gfxbox}
+\begin{table}[htbp!]
+\centering
+\caption{Changes in Quality or Treatment Intensity}
+\label{tab:other_results}
+\usebox{\gfxbox}
+\par
+\begin{minipage}{\wd\gfxbox}
+\footnotesize
+Notes: All regressions include hospital and year fixed effects, and other hospital level controls include bed count, number of nurses, and number of other non-medical staff. In cases in which independent variables are missing, we recode them and control for missing variable indicators to ensure a balanced panel.  Standard errors are clustered at the hospital level.   *** p-value$<$0.01, ** p-value$<$0.05, * p-value$<$0.1.
+\end{minipage}
+\end{table}
 
 
 
