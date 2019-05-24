@@ -74,9 +74,9 @@ Fourth, from an econometric perspective, time-varying unobserved heterogeneity i
 
 In the remainder of the paper, we first examine heterogeneities in the effects of HRRP/HVBP. Here, we estimate larger payment increases among those hospitals with larger penalties. We also find substantial variation in payment increases across different service lines, with increases in average hospital payments for circulatory system (1.9$\%$) and nervous system (2.1$\%$) claims, but with economically small and insignificant effects for respiratory system, musculoskeletal system, and labor and delivery claims.\footnote{We identify ``admission categories'' based on the major diagnostic category classifications.} In addition, we estimate larger effects among hospitals with the most exposure to the P4P programs, as proxied by the hospital's share of public insurance patients, and we estimate larger effects among hospitals that are more financially integrated with physicians. Finally, we examine several potential mechanisms that may mediate the effects of P4P penalties on hospital payments. Two mechanisms that we can directly test in our data include: 1) changes in hospital quality; and 2) changes in hospital services and costs. Across a range of outcomes intended to capture these mechanisms, we find economically small and statistically insignificant effects of HRRP/HVBP penalties.
 
-Collectively, we find strong empirical evidence that penalties incurred under the HRRP/HVBP led to increases in private insurance payments to hospitals. This empirical finding is robust to differential trends by penalty status and a range of alternative specifications. We also estimate heterogeneous effects along several natural dimensions, including penalty size and exposure to the P4P programs. We suspect that the likely mechanism underlying these results is that hospitals incurred some costly investment in response to P4P penalties, and that these investments translated into higher private insurance payments; however, we are unable to estimate any such cost increases with data available in HCRIS. We also find no statistical evidence that any such investments ultimately improved quality among private insurance patients. One possibility, which is consistent with anecdotal evidence from physicians, is that the HRRP/HVBP penalties encouraged hospitals to change their processes of care (e.g., introducing more checklists and more oversight). Such investments would not be captured in our cost data but would intuitively be more salient for hospitals that are financially integrated with their physicians, which is consistent with our estimates of larger effects among vertically integrated hospitals. 
+Collectively, we find strong empirical evidence that penalties incurred under the HRRP/HVBP led to increases in private insurance payments to hospitals. This empirical finding is robust to differential trends by penalty status and a range of alternative specifications. We also estimate heterogeneous effects along several natural dimensions, including penalty size and exposure to the P4P programs. We suspect that the likely mechanism underlying these results is that hospitals incurred some costly investment in response to P4P penalties, and that these investments translated into higher private insurance payments; however, we are unable to estimate any such cost increases with data available in HCRIS. We also find no statistical evidence that any such investments ultimately improved quality among private insurance patients. One possibility, which is consistent with anecdotal evidence from physicians, is that the HRRP/HVBP penalties encouraged hospitals to change their processes of care (e.g., introducing more checklists and more oversight). Such investments would not be captured in our cost data but would intuitively be more salient for hospitals that are financially integrated with their physicians, which is consistent with our estimates of larger effects among vertically integrated hospitals.
 
-Our analysis offers two central contributions to the literature. First, we extend the literature on P4P in health care. Much of this existing literature studies other areas of care delivery, such as skilled nursing facilities and home health agencies, and studies of P4P in the hospital setting focus almost exclusively on quality outcomes. To our knowledge, we are the first to examine the effects of P4P on private insurance payments to hospitals. The potential unintended consequence of an increase in hospital prices due to P4P programs is an important issue as we further refine existing P4P programs and expand P4P into other areas. 
+Our analysis offers two central contributions to the literature. First, we extend the literature on P4P in health care. Much of this existing literature studies other areas of care delivery, such as skilled nursing facilities and home health agencies, and studies of P4P in the hospital setting focus almost exclusively on quality outcomes. To our knowledge, we are the first to examine the effects of P4P on private insurance payments to hospitals. The potential unintended consequence of an increase in hospital prices due to P4P programs is an important issue as we further refine existing P4P programs and expand P4P into other areas.
 
 Second, and more generally, our analysis introduces another important factor in our understanding of variation in health care pricing. As clearly documented in \cite{cooper2017}, hospital market power explains a large amount of geographic variation in hospital prices. A large literature also considers the role of public payments on hospital prices, often examined in the context of hospital cost-shifting \citep{dranove1988,cutler2000,frakt2011}. Cost-shifting may play some role in our estimates given that we do not identify a clear change in costs or quality to explain our estimated payment increases; however, given the stated goals of the HRRP/HVBP and anecdotal evidence regarding hospital responses to these programs, we do not interpret the HRRP/HVBP penalties are a pure reduction in public payments. We instead take as given that hospitals responded in some costly way to the P4P penalties. In this context, our results show that changes in public policy also meaningfully contribute to variation in health care prices, even after adjusting for market power, hospital fixed effects, and other observable hospital and market characteristics.
 
@@ -109,14 +109,25 @@ Finally, since a natural way to reduce exposure to HRRP/HVBP penalties is to avo
 
 \subsection{Regression Analysis}
 \label{sec:initial}
-Our baseline empirical specification isolates within-hospital variation in private payments over time by whether a hospital faced a net penalty from the HRRP and HVBP. This analysis therefore focuses on the extensive margin of penalties.  Equation 1 presents our main empirical model:
+Our preferred empirical specification isolates within-hospital variation in private payments over time by whether a hospital faced a net penalty from the HRRP and HVBP. This analysis therefore focuses on the extensive margin of penalties.  Equation \ref{eq: reg} presents our main empirical model:
 \begin{equation}
 \label{eq: reg}
 y_{ht} = \alpha_{h} + x^{'}_{ht}\beta + \delta1[Penalty_{t}]  + \theta_{t}  +  \epsilon_{ht},
 \end{equation}
-where outcome $y_{ht}$ at hospital $h$ in fiscal year $t$ is a function of a hospital specific intercept, $\alpha_{h}$; a vector of time-varying hospital and market-level exogenous characteristics, $x_{ht}$; an indicator for a net penalty under the combination of HRRP/HVBP policies; controls for year effects, $\theta_t$; and an i.i.d. error term $\epsilon_{ht}$.  Because the penalty indicator is zero for all hospitals in 2010 and 2011, and because we include hospital fixed effects, Equation 1 represents an unscaled difference-in-differences estimator. Our parameter of interest, $\delta$, captures the extent to which hospitals penalized under the HRRP/HVBP receive differential private payments relative to hospitals with no penalty (which includes hospitals that received a bonus).  For a causal interpretation of $\delta$, the underlying assumption in Equation 1 is that there are no time-varying unobserved characteristics that differentially affect payments in penalized hospitals relative to non-penalized hospitals, an assumption that we address in the next subsection.
+where outcome $y_{ht}$ at hospital $h$ in fiscal year $t$ is a function of a hospital specific intercept, $\alpha_{h}$; a vector of time-varying hospital and market-level exogenous characteristics, $x_{ht}$; an indicator for a net penalty under the combination of HRRP/HVBP policies; controls for year effects, $\theta_t$; and an i.i.d. error term $\epsilon_{ht}$.  Because the penalty indicator is zero for all hospitals in 2010 and 2011, and because we include hospital fixed effects, Equation \ref{eq: reg} represents an unscaled difference-in-differences estimator. Our parameter of interest, $\delta$, captures the extent to which hospitals penalized under the HRRP/HVBP receive differential private payments relative to hospitals with no penalty (which includes hospitals that received a bonus). For completeness, we also consider a specification without hospital fixed effects (e.g., setting $\alpha_{h}=\alpha$ in Equation \ref{eq: reg}), which helps illustrate the role of time-invariant differences across hospitals in examining private insurance payments.
 
-Table \ref{tab:baselineresults} presents results from Equation 1 for the log of mean payments, the log of mean net charges, and several (logged) payer-specific discharge variables. The first column of Table \ref{tab:baselineresults} demonstrates that hospitals that faced payment reductions increased payments by 1.4\% over the period of 2012-2015.  This represents a roughly \$167 increase in payments among penalized hospitals, on average.\footnote{This interpretation is based on the average private insurance payment of \$12,100 among penalized hospitals after FY 2012. Assuming this average payment reflects a 1.4\% increase in the average payment in the absence of the penalty, we calculate the effect in dollar terms as $\$12,100 - \frac{\$12,000}{1+0.014}$.} Column 2 presents estimates from a similar model in which we replace negotiated payments with the log of mean net charges as discussed previously \citep{dafny2009,lewis2015,schmitt2017,dranove2017}. Results in column 2 suggest a smaller and statistically insignificant change in log mean net charges for penalized hospitals, which we argue demonstrates the importance of using actual payment data.  Columns 3 and 4 of Table \ref{tab:baselineresults} show movement \textit{away} from Medicaid and Medicare patients for penalized hospitals, with discharges decreasing by 4.5\% and 2.7\%, respectively.
+Table \ref{tab:baselineresults} presents estimated effects of HRRP/HVBP penalties on the log of mean payments, the log of mean net charges, and payer-specific (log) discharges. Estimates in panel 1 are based on the full sample of hospitals, and estimates in panel 2 are limited to hospitals never penalized or those penalized in 2012 or 2013. The first row in each panel reflects the most parsimonious specification, excluding hospital fixed effects, and estimates in row 2 of each panel include hospital fixed effects. Estimates from additional specifications are presented in rows 3-5, which we discuss throughout this subsection.
+
+Focusing on our preferred specification in row 2, estimates in panel 1 (full sample) demonstrate that hospitals that faced payment reductions increased payments by 1.4\% over the period of 2012-2015.  This represents a roughly \$167 increase in payments among penalized hospitals, on average.\footnote{This interpretation is based on the average private insurance payment of \$12,100 among penalized hospitals after FY 2012. Assuming this average payment reflects a 1.4\% increase in the average payment in the absence of the penalty, we calculate the effect in dollar terms as $\$12,100 - \frac{\$12,000}{1+0.014}$.} Column 2 presents estimates from a similar model in which we replace negotiated payments with the log of mean net charges as discussed previously \citep{dafny2009,lewis2015,schmitt2017,dranove2017}. Results in column 2 suggest a smaller and statistically insignificant change in log mean net charges for penalized hospitals, which we argue demonstrates the importance of using actual payment data. Finally, estimates in columns 3 and 4 of Table \ref{tab:baselineresults} show movement \textit{away} from Medicaid and Medicare patients for penalized hospitals, with discharges decreasing by 4.5\% and 2.7\%, respectively.
+
+For a causal interpretation of $\delta$, the underlying assumption in Equation \ref{eq: reg} is that there are no time-varying unobserved characteristics that differentially affect payments in penalized hospitals relative to non-penalized hospitals. While we cannot directly test this assumption empirically, we can examine the presence of pre-trends as suggestive evidence for or against the assumption of parallel counterfactual trends. Note that in our data, we have four different treatment groups defined by hospitals first penalized in 2012, 2013, 2014, or 2015 respectively. There is also substantial persistence in treatment, such that most hospitals penalized in year $t$ are also penalized in years $t+1$, $t+2$, etc. 
+
+We test for evidence of differential trends in two ways. First, we present an event study for each treatment group, in which we interact the treatment dummy with a year dummy and estimate separate treatment coefficients in each year (relative to the year prior to the penalty). Second, we plot the mean residual from a regression of average payments, analogous to Equation \ref{eq: reg} but where we exclude the net penalty variable. Based on the regression results, we form the mean residual separately for penalized versus non-penalized hospitals in each year and add to this to the average observed payment among penalized/non-penalized hospitals by year. 
+
+Results are presented in Figure \ref{fig:event_resid} and offer two key takeaways. First, while our pre-period data are limited in the early treatment groups, we fail to reject the null of parallel pre-trends among hospitals penalized in 2012 or 2013. This is not the case for hospitals treated in 2014 or 2015, where we do find evidence of differential pre-trends. Second, when allowing for differential trends as reflected in the mean residual payment graphs, we see clear graphical evidence of parallel movement in average payments with a discontinuity at the treatment period, again with the clearest evidence in the 2012 and 2013 treatment groups.
+
+
+
 
 \subsection{Robustness}
 \label{sec:robust}
@@ -203,6 +214,65 @@ We also stress that these results should not be interpreted to suggest that pay 
 \newsavebox{\gfxbox}
 \newpage
 \section*{Figures}
+
+\newpage
+\begin{figure}[!htb]
+\caption{Evidence of Parallel or Differential Trends}
+\label{fig:event_resid}
+\begin{subfigure}{.5\textwidth}
+ \caption{Event Study: 2012 Treatment}
+  \centering
+  \includegraphics[width=.8\linewidth]{ev_lnprice_hcci_2012.pdf}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \caption{Mean Residual Payments: 2012 Treatment}
+  \includegraphics[width=.8\linewidth]{price_resid_2012.pdf}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \caption{Event Study: 2013 Treatment}
+  \includegraphics[width=.8\linewidth]{ev_lnprice_hcci_2013.pdf}
+  \label{fig:sfig3}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \caption{Mean Residual Payments: 2013 Treatment}
+  \includegraphics[width=.8\linewidth]{price_resid_2013.pdf}
+  \label{fig:sfig4}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+ \caption{Event Study: 2014 Treatment}
+  \centering
+  \includegraphics[width=.8\linewidth]{ev_lnprice_hcci_2014.pdf}
+  \label{fig:sfig5}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \caption{Mean Residual Payments: 2014 Treatment}
+  \includegraphics[width=.8\linewidth]{price_resid_2014.pdf}
+  \label{fig:sfig6}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+ \caption{Event Study: 2014 Treatment}
+  \centering
+  \includegraphics[width=.8\linewidth]{ev_lnprice_hcci_2015.pdf}
+  \label{fig:sfig7}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \caption{Mean Residual Payments: 2015 Treatment}
+  \includegraphics[width=.8\linewidth]{price_resid_2015.pdf}
+  \label{fig:sfig8}
+\end{subfigure}
+\caption*{\footnotesize{Event studies and mean residual payments as discussed in the main text. Each event study reflects estimated coefficients on the interaction between treatment and year dummies. The excluded year in all cases is the year before treatment. Mean residual prices reflect the mean residual from a regression of mean hospital payments similar to Equation \ref{eq: reg} but excluding the net penalty variable. The residual payment in the figure is the mean residual by treatment group by year plus the mean observed payment by treatment group by year.}}
+\end{figure}
+
+
+\newpage
+
 \savebox{\gfxbox}{
 \centering
 \includegraphics[scale=1]{Readmit_Graphs.pdf}
